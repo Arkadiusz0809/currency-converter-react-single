@@ -1,15 +1,16 @@
 import { useState } from "react";
 import "./style.css";
 import Result from "../Result";
+import { Clock } from "../Clock";
 
 const currencies = [
-    { id: "EUR", value: 4.3 },
-    { id: "USD", value: 3.9 },
-    { id: "GBP", value: 5.2 },
-  ];
+  { id: "EUR", value: 4.3 },
+  { id: "USD", value: 3.9 },
+  { id: "GBP", value: 5.2 },
+];
 
 const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => {
-  
+
   const [newAmount, setNewAmount] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState("EUR");
   const [result, setResult] = useState();
@@ -32,6 +33,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
 
   return (
     <form className="form" onSubmit={onFormSubmit} >
+      <Clock />
       <h1 className="form__header">{welcomeHeader}</h1>
       <div className="form__container">
         <p>

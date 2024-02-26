@@ -1,6 +1,6 @@
 ## Currency Converter
 
-![App](https://github.com/Arkadiusz0809/currency-converter-react-single/blob/main/src/images/intro.gif?raw=true)
+![App](https://github.com/Arkadiusz0809/currency-converter-react-single/blob/main/src/images/intro_currency.gif?raw=true)
 
 [App](https://arkadiusz0809.github.io/currency-converter-react-single/)
 

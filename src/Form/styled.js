@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
-export const StyledForm = styled.form`
-`;
-
-export const Header = styled.header`
+export const Header = styled.h2`
     color: #05abc4;
     text-align: center;
 `;

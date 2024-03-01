@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./style.css";
 import Result from "../Result";
 import { Clock } from "../Clock";
+import { StyledForm, Header, LabelText, Field, SetButton, Button, Info, Container, Label } from "./styled.js";
 
 const currencies = [
   { id: "EUR", value: 4.3 },
@@ -32,17 +32,16 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
   }
 
   return (
-    <form className="form" onSubmit={onFormSubmit} >
+    <StyledForm onSubmit={onFormSubmit} >
       <Clock />
-      <h1 className="form__header">{welcomeHeader}</h1>
-      <div className="form__container">
+      <Header>{welcomeHeader}</Header>
+      <Container>
         <p>
-          <label className="form__containerLabel">
-            <span className="form__labelText">
+          <Label >
+            <LabelText>
               {amountHeader} :
-            </span>
-            <input
-              className="form__field"
+            </LabelText>
+            <Field
               placeholder="Wpisz kwotę w zł"
               type="number"
               min="0.01"
@@ -51,13 +50,13 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
               value={newAmount}
               onChange={({ target }) => setNewAmount(target.value)}
             />
-          </label>
+          </Label>
         </p>
-        <p >
-          <label className="form__containerLabel">
-            <span className="form__labelText form__labelText--centered">
+        <p>
+          <Label>
+            <LabelText>
               {currencyHeader}
-            </span>
+            </LabelText>
             <select
               value={selectedCurrency}
               onChange={({ target }) => setSelectedCurrency(target.value)}
@@ -71,19 +70,19 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
                 </option>
               )))}
             </select>
-          </label>
+          </Label>
         </p>
-      </div>
-      <p className="form_setButtton">
-        <button className="form__button">{buttonHeader}</button>
-      </p>
+      </Container>
+      <SetButton>
+        <Button>{buttonHeader}</Button>
+      </SetButton>
       <Result
         result={result}
       />
-      <p className="form_info">
+      <Info>
         Kursy pochodzą ze strony nbp.pl z dnia 15.02.2024
-      </p>
-    </form>
+      </Info>
+    </StyledForm>
   )
 }
 

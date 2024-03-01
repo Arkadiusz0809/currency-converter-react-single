@@ -1,50 +1,54 @@
-.form__header{
+import styled from "styled-components";
+
+export const StyledForm = styled.form`
+`;
+
+export const Header = styled.header`
     color: #05abc4;
     text-align: center;
-}
+`;
 
-.form__labelText {
+export const LabelText = styled.div`
     width: 100%;
     max-width: 200px;
     display: inline-block;
     margin-right: 5px;
-}
+`;
 
-.form__field{
+export const Field = styled.input`
     max-width: 150px;
     word-break: keep-all;
-}
+`;
 
-.form_setButtton{
+export const SetButton = styled.p`
     text-align: center;
     max-width: 600px;
-}
+`;
 
-.form__button {
-    width: 100%;
+export const Button = styled.button`
+     width: 100%;
     padding: 10px;
     border-radius: 10px;
     background-color: beige;
-}
+`;
 
-.form_info {
+export const Info = styled.p`
     font-size: 14;
     text-align: center;
     color: #555;
     padding-top: 10px;
-}
+`;
 
-@media(max-width: 460px){
-    .form__container {
+export const Container = styled.div`
+    @media(max-width: 460px) 
+    {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
     }
-}
 
-@media(max-width: 460px){
-    .form__containerLabel {
-        display: flex;
-    
-    }
-}
+`;
+
+export const Label = styled.p`
+    display: flex;
+`;

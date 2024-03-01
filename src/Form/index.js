@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Result from "../Result";
-import { Clock } from "../Clock";
-import { StyledForm, Header, LabelText, Field, SetButton, Button, Info, Container, Label } from "./styled.js";
+import {Header, LabelText, Field, SetButton, Button, Info, Container, Label } from "./styled.js";
 
 const currencies = [
   { id: "EUR", value: 4.3 },
@@ -32,8 +31,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
   }
 
   return (
-    <StyledForm onSubmit={onFormSubmit} >
-      <Clock />
+    <form onSubmit={onFormSubmit} >
       <Header>{welcomeHeader}</Header>
       <Container>
         <p>
@@ -82,7 +80,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
       <Info>
         Kursy pochodzą ze strony nbp.pl z dnia 15.02.2024
       </Info>
-    </StyledForm>
+    </form>
   )
 }
 

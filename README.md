@@ -21,6 +21,8 @@ Tools used:
 - React JS
 - npm
 - gh-pages
+- localeStorage
+- styled components
 
 ## Available Scripts
 

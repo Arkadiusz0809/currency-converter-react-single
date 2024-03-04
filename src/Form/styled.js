@@ -49,3 +49,11 @@ export const Container = styled.div`
 export const Label = styled.p`
     display: flex;
 `;
+
+export const Loading = styled.p`
+    color: teal;
+`;
+
+export const Failure = styled.p`
+    color: crimson;
+`;

@@ -5,6 +5,7 @@
   "homepage": "https://arkadiusz0809.github.io/currency-converter-react-single/",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "*",
+    "@everapi/currencyapi-js": "^1.0.6",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

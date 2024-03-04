@@ -1,12 +1,7 @@
 import { useState } from "react";
 import Result from "../Result";
-import {Header, LabelText, Field, SetButton, Button, Info, Container, Label } from "./styled.js";
-
-const currencies = [
-  { id: "EUR", value: 4.3 },
-  { id: "USD", value: 3.9 },
-  { id: "GBP", value: 5.2 },
-];
+import { Header, LabelText, Field, SetButton, Button, Info, Container, Label, Loading, Failure, } from "./styled.js";
+import { useCurrencies } from "./useCurrencies.js";
 
 const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => {
 
@@ -14,9 +9,10 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
   const [selectedCurrency, setSelectedCurrency] = useState("EUR");
   const [result, setResult] = useState();
 
-  const calculateResult = () => {
+  const currencies = useCurrencies();
 
-    const rate = currencies.find(({ id }) => id === selectedCurrency).value;
+  const calculateResult = (selectedCurrency, newAmount) => {
+    const rate = currencies.rates[selectedCurrency];
 
     setResult({
       sourceAmount: +newAmount,
@@ -33,47 +29,65 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
   return (
     <form onSubmit={onFormSubmit} >
       <Header>{welcomeHeader}</Header>
-      <Container>
-        <p>
-          <Label >
-            <LabelText>
-              {amountHeader} :
-            </LabelText>
-            <Field
-              placeholder="Wpisz kwotę w zł"
-              type="number"
-              min="0.01"
-              step="0.01"
-              required
-              value={newAmount}
-              onChange={({ target }) => setNewAmount(target.value)}
-            />
-          </Label>
-        </p>
-        <p>
-          <Label>
-            <LabelText>
-              {currencyHeader}
-            </LabelText>
-            <select
-              value={selectedCurrency}
-              onChange={({ target }) => setSelectedCurrency(target.value)}
-            >
-              {currencies.map((selectedCurrency => (
-                <option
-                  key={selectedCurrency.id}
-                  value={selectedCurrency.id}
-                >
-                  {selectedCurrency.id}
-                </option>
-              )))}
-            </select>
-          </Label>
-        </p>
-      </Container>
-      <SetButton>
-        <Button>{buttonHeader}</Button>
-      </SetButton>
+      {currencies.state === "loading"
+        ? (
+          <Loading>
+            Sekundka <br />
+            Ładuję kursy walut z  Europejskiego Banku Centralnego...
+          </Loading>
+        )
+        : (
+          currencies.state === "error" ? (
+            <Failure>
+              Hmmm...coś poszło nie tak. Sprawdź połączenie z internetem i wróć później
+            </Failure>
+          ) : (
+            <>
+              <Container>
+                <p>
+                  <Label >
+                    <LabelText>
+                      {amountHeader} :
+                    </LabelText>
+                    <Field
+                      placeholder="Wpisz kwotę w zł"
+                      type="number"
+                      min="0.01"
+                      step="0.01"
+                      required
+                      value={newAmount}
+                      onChange={({ target }) => setNewAmount(target.value)}
+                    />
+                  </Label>
+                </p>
+                <p>
+                  <Label>
+                    <LabelText>
+                      {currencyHeader}
+                    </LabelText>
+                      <select
+                        value={selectedCurrency}
+                        onChange={({ target }) => setSelectedCurrency(target.value)}
+                      >
+                        {Object.keys(currencies.rates).map(((selectedCurrency) => (
+                          <option
+                            key={selectedCurrency}
+                            value={selectedCurrency}
+                          >
+                            {selectedCurrency}
+                          </option>
+                        )))}
+                      </select>
+                  </Label>
+                </p>
+              </Container>
+              <SetButton>
+                <Button>{buttonHeader}</Button>
+              </SetButton>
+            </>
+          )
+        )
+      }
       <Result
         result={result}
       />

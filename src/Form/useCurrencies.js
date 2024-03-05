@@ -1,28 +1,28 @@
 import { useEffect, useState } from 'react';
 
 export const useCurrencies = () => {
-    const [currency, setCurrency] = useState({
+    const [currencyApi, setCurrencyApi] = useState({
         state: "loading",
     });
 
     useEffect(() => {
         const fetchCurrency = async () => {
             try {
-                const response = await fetch("https://api.currencyapi.com/v3/latest?apikey=cur_live_3IA2V15S6LjGwMwzqJEZntZyBmdFmVI5T7sdbk6h")
+                const response = await fetch("https://api.currencyapi.com/v3/latest?apikey=cur_live_3IA2V15S6LjGwMwzqJEZntZyBmdFmVI5T7sdbk6h&base_currency=PLN")
 
                 if (!response.ok) {
                     throw new Error(response.statusText);
                 }
 
-                const { rates, date } = await response.json();
+                const { data, meta } = await response.json();
 
-                setCurrency({
+                setCurrencyApi({
                     state: "success",
-                    rates,
-                    date,
+                    rates: data,
+                    date: meta.last_updated_at,
                 });
             } catch {
-                setCurrency({
+                setCurrencyApi({
                     state: "error",
                 });
             }
@@ -30,5 +30,5 @@ export const useCurrencies = () => {
         setTimeout(fetchCurrency, 2000);
     }, []);
 
-    return currency;
+    return currencyApi;
 };

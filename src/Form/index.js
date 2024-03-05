@@ -6,17 +6,17 @@ import { useCurrencies } from "./useCurrencies.js";
 const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => {
 
   const [newAmount, setNewAmount] = useState("");
-  const [selectedCurrency, setSelectedCurrency] = useState("EUR");
+  const [selectedCurrency, setSelectedCurrency] = useState("");
   const [result, setResult] = useState();
 
-  const currencies = useCurrencies();
+  const currenciesApi = useCurrencies();
 
   const calculateResult = (selectedCurrency, newAmount) => {
-    const rate = currencies.rates[selectedCurrency];
+    const rate = currenciesApi.value[selectedCurrency];
 
     setResult({
       sourceAmount: +newAmount,
-      targetAmount: newAmount / rate,
+      targetAmount: newAmount / rate.value,
       selectedCurrency,
     });
   }
@@ -29,7 +29,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
   return (
     <form onSubmit={onFormSubmit} >
       <Header>{welcomeHeader}</Header>
-      {currencies.state === "loading"
+      {currenciesApi.state === "loading"
         ? (
           <Loading>
             Sekundka <br />
@@ -37,7 +37,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
           </Loading>
         )
         : (
-          currencies.state === "error" ? (
+          currenciesApi.state === "error" ? (
             <Failure>
               Hmmm...coś poszło nie tak. Sprawdź połączenie z internetem i wróć później
             </Failure>
@@ -69,7 +69,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
                         value={selectedCurrency}
                         onChange={({ target }) => setSelectedCurrency(target.value)}
                       >
-                        {Object.keys(currencies.rates).map(((selectedCurrency) => (
+                        {Object.keys(currenciesApi.value).map(((selectedCurrency) => (
                           <option
                             key={selectedCurrency}
                             value={selectedCurrency}

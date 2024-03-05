@@ -67,7 +67,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
                     </LabelText>
                       <select
                         value={selectedCurrency}
-                        onChange={({ target }) => setSelectedCurrency(target.value)}
+                        onChange={({ target }) => setSelectedCurrency(target.code)}
                       >
                         {Object.keys(currenciesApi.value).map(((selectedCurrency) => (
                           <option

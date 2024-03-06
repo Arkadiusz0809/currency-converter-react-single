@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { GetCurrenciesAxios } from './useGetCurrenciesAxios';
 
 export const useCurrencies = () => {
     const [currencyApi, setCurrencyApi] = useState({
@@ -10,13 +11,13 @@ export const useCurrencies = () => {
     useEffect(() => {
         const fetchCurrency = async () => {
             try {
-                const response = await fetch("https://api.currencyapi.com/v3/latest?apikey=cur_live_3IA2V15S6LjGwMwzqJEZntZyBmdFmVI5T7sdbk6h&base_currency=PLN")
+                // const response = await fetch("https://api.currencyapi.com/v3/latest?apikey=cur_live_3IA2V15S6LjGwMwzqJEZntZyBmdFmVI5T7sdbk6h&base_currency=PLN")
 
                 if (!response.ok) {
                     throw new Error(response.statusText);
                 }
 
-                const { data, meta } = await response.json();
+                const { data, meta } = await GetCurrenciesAxios();
 
                 setCurrencyApi({
                     state: "success",

@@ -9,10 +9,12 @@ export const useCurrencies = () => {
     });
 
     useEffect(() => {
+        const response = GetCurrenciesFetch.response
         const fetchCurrency = async () => {
             try {
-                // const response = await fetch("https://api.currencyapi.com/v3/latest?apikey=cur_live_3IA2V15S6LjGwMwzqJEZntZyBmdFmVI5T7sdbk6h&base_currency=PLN")
-
+                if (!response.ok) {
+                    throw new Error(response.statusText);
+                }
                 const { data, meta } = await GetCurrenciesFetch();
 
                 setCurrencyApi({

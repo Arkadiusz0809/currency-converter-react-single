@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 export const useCurrencies = () => {
     const [currencyApi, setCurrencyApi] = useState({
         state: "loading",
+        rates: null,
+        date: null,
     });
 
     useEffect(() => {

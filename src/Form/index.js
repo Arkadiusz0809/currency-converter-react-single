@@ -6,18 +6,19 @@ import { useCurrencies } from "./useCurrencies.js";
 const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => {
 
   const [newAmount, setNewAmount] = useState("");
-  const [selectedCurrency, setSelectedCurrency] = useState("");
+  const [selectedCurrency, setSelectedCurrency] = useState("EUR");
   const [result, setResult] = useState();
 
-  const currenciesApi = useCurrencies();
+  const { rates, state, date } = useCurrencies();
 
   const calculateResult = (selectedCurrency, newAmount) => {
-    const rate = currenciesApi.value[selectedCurrency];
+    const rate = rates[selectedCurrency].value;
 
     setResult({
       sourceAmount: +newAmount,
-      targetAmount: newAmount / rate.value,
+      targetAmount: newAmount * rate,
       selectedCurrency,
+      date: new Date(date).toLocaleDateString("pl-PL"),
     });
   }
 
@@ -29,7 +30,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
   return (
     <form onSubmit={onFormSubmit} >
       <Header>{welcomeHeader}</Header>
-      {currenciesApi.state === "loading"
+      {state === "loading"
         ? (
           <Loading>
             Sekundka <br />
@@ -37,7 +38,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
           </Loading>
         )
         : (
-          currenciesApi.state === "error" ? (
+          state === "error" ? (
             <Failure>
               Hmmm...coś poszło nie tak. Sprawdź połączenie z internetem i wróć później
             </Failure>
@@ -67,9 +68,9 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
                     </LabelText>
                       <select
                         value={selectedCurrency}
-                        onChange={({ target }) => setSelectedCurrency(target.code)}
+                        onChange={({ target }) => setSelectedCurrency(target.value)}
                       >
-                        {Object.keys(currenciesApi.value).map(((selectedCurrency) => (
+                        {Object.keys(rates).map(((selectedCurrency) => (
                           <option
                             key={selectedCurrency}
                             value={selectedCurrency}

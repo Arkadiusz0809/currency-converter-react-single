@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { GetCurrenciesFetch } from "./useGetCurrenciesFetch";
+import { getCurrenciesFetch } from "./useGetCurrenciesFetch";
 
 export const useCurrencies = () => {
     const [currencyApi, setCurrencyApi] = useState({
@@ -9,22 +9,22 @@ export const useCurrencies = () => {
     });
 
     useEffect(() => {
-        const response = GetCurrenciesFetch.response
         const fetchCurrency = async () => {
             try {
-                if (!response.ok) {
-                    throw new Error(response.statusText);
+                const response = await getCurrenciesFetch();
+        
+                if (!response?.data) {
+                  throw new Error(response.statusText);
                 }
-                const { data, meta } = await GetCurrenciesFetch();
-
+        
                 setCurrencyApi({
-                    state: "success",
-                    rates: data,
-                    date: meta.last_updated_at,
+                  state: "success",
+                  rates: response.data,
+                  date: response.meta.last_updated_at,
                 });
-            } catch {
+              } catch {
                 setCurrencyApi({
-                    state: "error",
+                  state: "error",
                 });
             }
         };

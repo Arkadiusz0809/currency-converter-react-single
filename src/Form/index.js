@@ -2,6 +2,7 @@ import { useState } from "react";
 import Result from "../Result";
 import { Header, LabelText, Field, SetButton, Button, Info, Container, Label, Loading, Failure, } from "./styled.js";
 import { useCurrencies } from "./useCurrencies.js";
+import Adnotation from "../Adnotation/index.js";
 
 const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => {
 
@@ -66,19 +67,19 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
                     <LabelText>
                       {currencyHeader}
                     </LabelText>
-                      <select
-                        value={selectedCurrency}
-                        onChange={({ target }) => setSelectedCurrency(target.value)}
-                      >
-                        {Object.keys(rates).map(((selectedCurrency) => (
-                          <option
-                            key={selectedCurrency}
-                            value={selectedCurrency}
-                          >
-                            {selectedCurrency}
-                          </option>
-                        )))}
-                      </select>
+                    <select
+                      value={selectedCurrency}
+                      onChange={({ target }) => setSelectedCurrency(target.value)}
+                    >
+                      {Object.keys(rates).map(((selectedCurrency) => (
+                        <option
+                          key={selectedCurrency}
+                          value={selectedCurrency}
+                        >
+                          {selectedCurrency}
+                        </option>
+                      )))}
+                    </select>
                   </Label>
                 </p>
               </Container>
@@ -93,7 +94,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
         result={result}
       />
       <Info>
-        Kursy pochodzą ze strony nbp.pl z dnia 15.02.2024
+        <Adnotation />
       </Info>
     </form>
   )

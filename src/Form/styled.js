@@ -34,20 +34,28 @@ export const Info = styled.p`
     text-align: center;
     color: #555;
     padding-top: 10px;
+    line-height: 1.4;
 `;
 
 export const Container = styled.div`
     @media(max-width: 460px) 
     {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
     }
 
 `;
 
 export const Label = styled.p`
     display: flex;
+
+    @media(max-width: 460px) 
+    {
+        display: grid;
+        justify-content: center;
+        grid-gap: 10px;
+        margin: 0;
+        text-align: center;
+    }
 `;
 
 export const Loading = styled.p`

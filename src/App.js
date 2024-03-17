@@ -9,9 +9,9 @@ function App() {
       <Clock />
       <Form
         welcomeHeader="Welcome, and wish all the best!"
-        amountHeader="Podaj kwotę (zł)"
-        currencyHeader="Wybierz walutę:"
-        buttonHeader="Oblicz !"
+        amountHeader="Enter the amount (zł)"
+        currencyHeader="Select the currency:"
+        buttonHeader="Calculate !"
       />
     </Container>
   );

@@ -1,7 +1,7 @@
 import { StyledClock } from "./styled.js";
 import {useCurrentDate} from "./useCurrentDate.js";
 
-const formatDate = (date) => date.toLocaleString(undefined, {
+const formatDate = (date) => date.toLocaleString("en-US", {
     weekday: "long",
     hour: "2-digit",
     minute: "2-digit",
@@ -15,7 +15,7 @@ export const Clock = () => {
 
   return (
     <StyledClock>
-      Dzisiaj jest
+      Today is
       {" "}
       {formatDate(date)}
     </StyledClock>

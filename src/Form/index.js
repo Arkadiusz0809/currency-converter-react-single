@@ -34,8 +34,8 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
       {state === "loading"
         ? (
           <Loading>
-            Sekundka <br />
-            Ładuję kursy walut z  Europejskiego Banku Centralnego...
+            One second... <br />
+            Loading exchange rates from the European Central Bank...
           </Loading>
         )
         : (
@@ -52,7 +52,7 @@ const Form = ({ welcomeHeader, amountHeader, currencyHeader, buttonHeader }) => 
                       {amountHeader} :
                     </LabelText>
                     <Field
-                      placeholder="Wpisz kwotę w zł"
+                      placeholder="Enter the amount in zł"
                       type="number"
                       min="0.01"
                       step="0.01"

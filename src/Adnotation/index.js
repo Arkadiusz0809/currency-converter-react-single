@@ -5,7 +5,7 @@ export const Adnotation = (ratesData) => {
 
     return (
         <>
-            Kursy walut pobierane są z Europejskiego Banku Centralnego<br /> Aktualne na dzień <strong> {formattedRatesDay}</strong>
+            Exchange rates are charged from the European Central Bank<br /> Current as of the date <strong> {formattedRatesDay}</strong>
         </>
 
     )

@@ -13,7 +13,7 @@ export const LabelText = styled.div`
 `;
 
 export const Field = styled.input`
-    max-width: 150px;
+    max-width: 190px;
     word-break: keep-all;
 `;
 

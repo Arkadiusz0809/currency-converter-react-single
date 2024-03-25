@@ -6,7 +6,7 @@
 
 ## Description
 
-It is an application that calculates the value entered on the value for the selected currency. The user can choose one of 3 currencies. Negative values are not counted.
+It is an application that calculates the value entered on the value for the selected currency. The user can choose one of mor than 160 currencies. Negative values are not counted.
 
 Tools used:
 --

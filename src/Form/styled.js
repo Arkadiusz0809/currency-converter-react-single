@@ -23,10 +23,12 @@ export const SetButton = styled.p`
 `;
 
 export const Button = styled.button`
-     width: 100%;
+    width: 100%;
     padding: 10px;
     border-radius: 10px;
     background-color: beige;
+	box-shadow: 5px 2px 5px 0px #008080;
+    border: 0px ;
 `;
 
 export const Info = styled.p`
